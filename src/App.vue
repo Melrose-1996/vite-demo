@@ -1,31 +1,23 @@
 <template>
   <div class="App-container">
-    <h1>父组件</h1>
-    <p>
-      {{ money }}
-    </p>
+    <h1>
+      作者：周杰伦<a href="javascript:;" @click="followFn">{{
+        loading ? "正在请求在..." : "关注"
+      }}</a>
+    </h1>
     <hr />
-    <Son :money="money" @change-money="changMoney" />
+    <Son />
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
-import Son from "./son.vue";
+import Son from "./Son.vue";
+import { followMixin } from "./mixins";
 export default {
+  components: { Son },
   name: "App",
-  components: {
-    Son,
-  },
-  // 父组件的数据传递给子组件
-  setup() {
-    const money = ref(100);
-
-    const changMoney = (newMoney) => {
-      console.log(newMoney);
-      money.value = newMoney;
-    };
-    return { money, changMoney };
-  },
+  // 这是一个数组类型，可以混入多个代码片段
+  mixins: [followMixin],
+  setup() {},
 };
 </script>

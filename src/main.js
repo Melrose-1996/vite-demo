@@ -21,4 +21,14 @@ const app = createApp(App);
 //     store,
 //     render: h => h(App)
 // }).$mount('#app')
+
+// 如果是 vue2.0 Vue.mixin({全局混入的选项对象})
+// vue3.0 app.mixin({全局混入的选项对象}) - 向下兼容
+app.mixin({
+  mounted() {
+    // $el 组件的根元素
+    console.log(this.$el, "dom 准备好了");
+  },
+});
+
 app.mount("#app");
